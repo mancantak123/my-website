@@ -1,11 +1,120 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>my website</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lobby Sederhana</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #1b1f3b, #2a2f58);
+      color: white;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    .lobby {
+      text-align: center;
+      padding: 40px;
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.05);
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+      width: 90%;
+      max-width: 400px;
+    }
+
+    .lobby h1 {
+      font-size: 2.2em;
+      letter-spacing: 2px;
+      margin-bottom: 15px;
+      color: #fff;
+      animation: fadeIn 2s ease forwards;
+    }
+
+    .lobby p {
+      color: #cfd2ff;
+      margin-bottom: 25px;
+      font-size: 1.1em;
+      animation: fadeIn 2.5s ease forwards;
+    }
+
+    .btn {
+      background: #00bcd4;
+      border: none;
+      color: white;
+      font-size: 1em;
+      padding: 12px 25px;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: background 0.3s, transform 0.2s;
+      animation: fadeIn 3s ease forwards;
+    }
+
+    .btn:hover {
+      background: #0097a7;
+      transform: scale(1.05);
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Animasi bintang latar */
+    .star {
+      position: absolute;
+      width: 2px;
+      height: 2px;
+      background: white;
+      border-radius: 50%;
+      opacity: 0.8;
+      animation: moveStar linear infinite;
+    }
+
+    @keyframes moveStar {
+      from { transform: translateY(0); }
+      to { transform: translateY(100vh); }
+    }
+  </style>
 </head>
 <body>
-    <h1>hello world</h1>
+  <div class="lobby">
+    <h1>Selamat Datang!</h1>
+    <p>Masuk ke dunia Anda dan mulai petualangan.</p>
+    <button class="btn" onclick="enterLobby()">Masuk</button>
+  </div>
+
+  <script>
+    // 🌠 Animasi bintang bergerak di latar belakang
+    const numStars = 50;
+    for (let i = 0; i < numStars; i++) {
+      const star = document.createElement("div");
+      star.classList.add("star");
+      document.body.appendChild(star);
+      star.style.left = Math.random() * 100 + "vw";
+      star.style.top = Math.random() * -100 + "vh";
+      star.style.animationDuration = (2 + Math.random() * 3) + "s";
+      star.style.animationDelay = Math.random() * 5 + "s";
+    }
+
+    // Efek animasi tombol "Masuk"
+    function enterLobby() {
+      document.querySelector(".lobby").style.transition = "all 1s ease";
+      document.querySelector(".lobby").style.opacity = "0";
+      document.querySelector(".lobby").style.transform = "scale(1.1)";
+      setTimeout(() => {
+        document.body.innerHTML = "<h1 style='color:white; text-align:center;'>Loading...</h1>";
+      }, 1000);
+    }
+  </script>
 </body>
 </html>
